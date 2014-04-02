@@ -7,7 +7,7 @@
 		"*.markdown",
 		"*.txt",
 		".*",
-		"Gruntfile.js",
+		"Gruntfile.js"
 	],
 	"dependencies": {
 		"jquery": ">=1.2.2"
