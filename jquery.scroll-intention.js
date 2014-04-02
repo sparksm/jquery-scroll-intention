@@ -1,12 +1,15 @@
-/*global module:true, Modernizr:true*/
+/*global module:true*/
 (function (factory) {
 	if (typeof define === 'function' && define.amd) {
+
 		// AMD. Register as an anonymous module.
 		define(['jquery'], factory);
 	} else if (typeof exports === 'object') {
+
 		// Node/CommonJS style for Browserify
 		module.exports = factory;
 	} else {
+
 		// Browser globals
 		factory(jQuery);
 	}
@@ -19,28 +22,56 @@
 	};
 	
 	var average = function (array) {
-		var av = 0;
-		var cnt = 0;
-		var len = array.length;
-		for (var i = 0; i < len; i += 1) {
-			var e = +array[i];
-			if (!e && array[i] !== 0 && array[i] !== '0') {
-				e -= 1;
+		var average = 0;
+		var count = 0;
+		for (var i = 0, length = array.length; i < length; i += 1) {
+			var member = +array[i];
+			if (!member && array[i] !== 0 && array[i] !== '0') {
+				member -= 1;
 			}
-			if (array[i] === e) {
-				av += e;
-				cnt += 1;
+			if (array[i] === member) {
+				average += member;
+				count += 1;
 			}
 		}
-		return av / cnt;
+		return average / count;
 	};
 
-	var startY = 0;
+	$.event.special.mousewheelintention = {
+		version: '0.1.0',
+	
+		setup: function () {
+			if (window.addEventListener) {
+				window.addEventListener('mousewheel', mouseWheelListener, false);
+				window.addEventListener('DOMMouseScroll', mouseWheelListener, false);
+			} else if (window.attachEvent) {
+				window.attachEvent('onmousewheel', mouseWheelListener);
+			}
+		},
+		
+		teardown: function () {
+			if (window.removeEventListener) {
+				window.removeEventListener('mousewheel', mouseWheelListener, false);
+				window.removeEventListener('DOMMouseScroll', mouseWheelListener, false);
+			} else if (window.detachEvent) {
+				window.detachEvent('onmousewheel', mouseWheelListener);
+			}
+		}
+	};
+
+	$.fn.extend({
+		mousewheelintention: function (fn) {
+			return fn ? this.bind('mouseWheelIntention', fn) : this.trigger('mouseWheelIntention');
+		},
+		
+		unmousewheelintention: function (fn) {
+			return this.unbind('mouseWheelIntention', fn);
+		}
+	});
+
 	var prevY = 0;
 	var lastEvents = [];
 	var lastThreeScrolls = new Array(10);
-	var intentional = false;
-	var resetTimer = null;
 
 	// populate the lastEvents array with 1s
 	for (var i = 0, j = 16; i < j; i += 1) {
@@ -48,14 +79,13 @@
 	}
 
 	function mouseWheelListener(event) {
+		var args = Array.prototype.slice.call(arguments, 1);
 		var y = Math.abs(event.wheelDeltaY);
 
 		// use detail when not wheelDelta not available like in firefox
 		if (!event.wheelDeltaY) {
 			y = Math.abs(event.detail * 3);
 		}
-		var nextY = startY + y;
-		var percent = prevY / nextY;
 
 		// update the lastEvents array
 		arrayremove(lastEvents, 0);
@@ -73,16 +103,8 @@
 
 		event.certainty = average(lastThreeScrolls);
 
-		$(window).trigger('mouseWheelIntention', event);
-
 		prevY = y;
-	}
-
-	if (window.addEventListener) {
-		window.addEventListener('mousewheel', mouseWheelListener, false);
-		window.addEventListener('DOMMouseScroll', mouseWheelListener, false);
-	} else if (window.attachEvent) {
-		window.attachEvent('onmousewheel', mouseWheelListener);
+		return ($.event.dispatch || $.event.handle).apply(this, args);
 	}
 
 }));
