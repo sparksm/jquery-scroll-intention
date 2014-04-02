@@ -1,0 +1,15 @@
+{
+  "name": "jquery-scroll-intention",
+  "version": "0.1.0",
+  "main": "./jquery.scroll-intention.js",
+  "ignore": [
+    "*.json",
+    "*.markdown",
+    "*.txt",
+    ".*",
+    "Gruntfile.js",
+  ],
+  "dependencies": {
+    "jquery": ">=1.2.2"
+  }
+}
