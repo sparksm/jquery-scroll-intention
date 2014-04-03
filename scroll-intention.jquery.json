@@ -1,0 +1,29 @@
+{
+	"name": "mousewheelintention",
+	"title": "jQuery Mousewheel Intention",
+	"description": "A jQuery plugin that provides a way to distinguish a user's intentional mousewheel events from smooth scrolling events.",
+	"keywords": [
+		"mousewheel",
+		"mouse",
+		"event",
+		"scroll",
+		"smooth"
+	],
+	"version": "0.1.0",
+	"author": {
+		"name": "Michael Sparks",
+		"url": "https://github.com/sparksm"
+	},
+	"licenses": [
+		{
+			"type": "FreeBSD",
+			"url": "https://raw.githubusercontent.com/sparksm/jquery-scroll-intention/master/LICENSE.txt"
+		}
+	],
+	"bugs": "https://github.com/sparksm/jquery-scroll-intention/issues",
+	"homepage": "https://github.com/sparksm/jquery-scroll-intention",
+	"download": "https://github.com/sparksm/jquery-scroll-intention",
+	"dependencies": {
+		"jquery": ">=1.2.2"
+	}
+}
