@@ -22,7 +22,7 @@
 	],
 	"bugs": "https://github.com/sparksm/jquery-scroll-intention/issues",
 	"homepage": "https://github.com/sparksm/jquery-scroll-intention",
-	"download": "https://github.com/sparksm/jquery-scroll-intention",
+	"download": "https://github.com/sparksm/jquery-scroll-intention/tags",
 	"dependencies": {
 		"jquery": ">=1.2.2"
 	}
