@@ -1,7 +1,27 @@
-NAME
+jQuery Mousewheel With Intent Plugin
 ========
 
-DESCRIPTION
+This plugin attempts to provide a way to distinguish a user's intentional mousewheel events from smooth scrolling accelerated events that are common with trackpads.
+
+A new event is created with the namespace `mousewheelintention`. The event shares the same properties as a mousewheel event but includes a property namespaced `certainty`. This number from 0 to 1 represents the likelihood that the event being triggered was from user input. 1 being very certain it's from the user and 0 being very certain it is not from the user.
+
+In order to use the plugin, simply bind the `mousewheelintention` event to an element.
+
+It also provides two helper methods called `mousewheelintention` and `unmousewheelintention` that act just like other event helper methods in jQuery.
+
+Here is an example of using both the bind and helper method syntax:
+
+```js
+// using on
+$('#element').on('mousewheelintention', function (event) {
+	console.log(event.certainty);
+});
+
+// using the event helper
+$('#element').mousewheelintention(function (event) {
+	console.log(event.certainty);
+});
+```
 
 License
 -------
