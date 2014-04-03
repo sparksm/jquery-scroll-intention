@@ -51,7 +51,7 @@
 	}
 	
 	$.event.special.mousewheelintention = {
-		version: '0.1.0',
+		version: '0.1.1',
 	
 		setup: function () {
 			if (this.addEventListener) {

@@ -1,9 +1,9 @@
 {
 	"name": "jquery-scroll-intention",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": "Michael Sparks (http://github.com/sparksm)",
 	"description": "A jQuery plugin that guesses if the mousewheel event is intentional or from smoothing",
-	"license": "BSD",
+	"license": "FreeBSD",
 	"homepage": "https://github.com/sparksm/jquery-scroll-intention",
 	"main": "./jquery.scroll-intention.js",
 	"repository": {
